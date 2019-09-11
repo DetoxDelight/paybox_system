@@ -71,11 +71,6 @@ module PayboxSystem
       params['PBX_HASH'] = HASH_METHOD
       params['PBX_TIME'] = Time.now.utc.iso8601
       params['PBX_HMAC'] = compute_hmac_signature(params, params['PBX_HASH'].downcase)
-
-      if params['PBX_PORTEUR']
-        params['PBX_PORTEUR'] = CGI.escape(params['PBX_PORTEUR'])
-      end
-
       params
     end
 
