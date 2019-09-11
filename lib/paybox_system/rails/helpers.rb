@@ -8,8 +8,7 @@ module PayboxSystem
         formatted_params = PayboxSystem.formatted_params(opts)
         capture do
           formatted_params.each do |name, value|
-            value = Rack::Utils.escape(value) if name != 'PBX_PORTEUR'
-            Rails.logger.info "##################### #{name} #{value}###################"
+            value = Rack::Utils.unescape(value) if name != 'PBX_PORTEUR'
             concat hidden_field_tag(name, value)
           end
         end
